@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mbryc\\Downloads\\RPSLS\\TODOV4.csproj": {}
+    "c:\\Users\\mbryc\\Downloads\\RPSLS\\TODOV4.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mbryc\\Downloads\\RPSLS\\TODOV4.csproj": {
+    "c:\\Users\\mbryc\\Downloads\\RPSLS\\TODOV4.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mbryc\\Downloads\\RPSLS\\TODOV4.csproj",
+        "projectUniqueName": "c:\\Users\\mbryc\\Downloads\\RPSLS\\TODOV4.csproj",
         "projectName": "TODOV4",
-        "projectPath": "C:\\Users\\mbryc\\Downloads\\RPSLS\\TODOV4.csproj",
+        "projectPath": "c:\\Users\\mbryc\\Downloads\\RPSLS\\TODOV4.csproj",
         "packagesPath": "C:\\Users\\mbryc\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mbryc\\Downloads\\RPSLS\\obj\\",
+        "outputPath": "c:\\Users\\mbryc\\Downloads\\RPSLS\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\mbryc\\AppData\\Roaming\\NuGet\\NuGet.Config"
