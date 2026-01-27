@@ -1,0 +1,11 @@
+C:\Users\carlo\Desktop\RPSLS\bin\Release\net9.0\publish\TODOV4.exe
+C:\Users\carlo\Desktop\RPSLS\bin\Release\net9.0\publish\appsettings.Development.json
+C:\Users\carlo\Desktop\RPSLS\bin\Release\net9.0\publish\appsettings.json
+C:\Users\carlo\Desktop\RPSLS\bin\Release\net9.0\publish\TODOV4.dll
+C:\Users\carlo\Desktop\RPSLS\bin\Release\net9.0\publish\TODOV4.deps.json
+C:\Users\carlo\Desktop\RPSLS\bin\Release\net9.0\publish\TODOV4.runtimeconfig.json
+C:\Users\carlo\Desktop\RPSLS\bin\Release\net9.0\publish\TODOV4.pdb
+C:\Users\carlo\Desktop\RPSLS\bin\Release\net9.0\publish\Microsoft.OpenApi.dll
+C:\Users\carlo\Desktop\RPSLS\bin\Release\net9.0\publish\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\carlo\Desktop\RPSLS\bin\Release\net9.0\publish\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\carlo\Desktop\RPSLS\bin\Release\net9.0\publish\Swashbuckle.AspNetCore.SwaggerUI.dll

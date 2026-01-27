@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="/Styles/style.css">
+    </head>
+  <body class="body1">
+  <div class="menu">
+
+    <!-- Main buttons -->
+    <button id="playBtn" class="play" type="button">PLAY</button>
+    <button id="pvpBtn" class="play" type="button">PVP</button>
+    <button id="howtoplay" class="howtoplay" type="button">How To PLAY</button>
+
+    <!-- Game options (hidden at start) -->
+    <div id="gameOptions" class="hidden">
+  <button id="bo1" class="play" type="button">1 game</button>
+  <button id="bo5" class="play" type="button">Best of 5</button>
+  <button id="bo7" class="play" type="button">Best of 7</button>
+</div>
+  </div>
+<div id="rules" class="card hidden" style="width: 1200px; height: 1000px; background-color: black;">
+  <div class="d-flex justify-content-end">
+  <button id="closeRules" style="background-color: red; width: 80px; height: 80px;">X</button>
+  </div>
+  <div class="d-flex justify-content-center">
+  <img src="/Assets/Rules.png" class="card-img-top" style="width: 550px; height: 490px;" alt="...">
+  </div>
+  <div class="card-body">
+    <p class="card-text" style="font-size: 33px; color: white;">Rock Paper Scissors Lizard Spock is played by choosing one of five gestures. Each gesture defeats two others and is defeated by two, keeping the game balanced. Rock crushes Scissors and Lizard, Paper covers Rock and disproves Spock, Scissors cut Paper and decapitate Lizard, Lizard poisons Spock and eats Paper, and Spock smashes Scissors and vaporizes Rock. If both players choose the same gesture, the round is a tie and must be replayed until a winner is decided.</p>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  
+  <script type="module" src="/Script/app.js" defer></script>
+</body>
+
+</html>
