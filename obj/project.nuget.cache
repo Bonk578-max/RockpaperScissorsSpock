@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "duBZPh1dwdM=",
+  "dgSpecHash": "KGWXD5hWw3c=",
   "success": true,
-  "projectFilePath": "c:\\Users\\mbryc\\Downloads\\RPSLS\\TODOV4.csproj",
+  "projectFilePath": "C:\\Users\\mbryc\\Downloads\\RPSLS\\MACKBMCRpsls.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mbryc\\.nuget\\packages\\microsoft.extensions.apidescription.server\\9.0.0\\microsoft.extensions.apidescription.server.9.0.0.nupkg.sha512",
     "C:\\Users\\mbryc\\.nuget\\packages\\microsoft.openapi\\2.3.0\\microsoft.openapi.2.3.0.nupkg.sha512",

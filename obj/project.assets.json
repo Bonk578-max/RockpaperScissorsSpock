@@ -551,9 +551,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mbryc\\Downloads\\RPSLS\\TODOV4.csproj",
-      "projectName": "TODOV4",
-      "projectPath": "C:\\Users\\mbryc\\Downloads\\RPSLS\\TODOV4.csproj",
+      "projectUniqueName": "C:\\Users\\mbryc\\Downloads\\RPSLS\\MACKBMCRpsls.csproj",
+      "projectName": "MACKBMCRpsls",
+      "projectPath": "C:\\Users\\mbryc\\Downloads\\RPSLS\\MACKBMCRpsls.csproj",
       "packagesPath": "C:\\Users\\mbryc\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\mbryc\\Downloads\\RPSLS\\obj\\",
       "projectStyle": "PackageReference",

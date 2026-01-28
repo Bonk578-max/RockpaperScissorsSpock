@@ -1,0 +1,11 @@
+C:\Users\mbryc\Downloads\RPSLS\bin\Release\net9.0\publish\MACKBMCRpsls.exe
+C:\Users\mbryc\Downloads\RPSLS\bin\Release\net9.0\publish\appsettings.Development.json
+C:\Users\mbryc\Downloads\RPSLS\bin\Release\net9.0\publish\appsettings.json
+C:\Users\mbryc\Downloads\RPSLS\bin\Release\net9.0\publish\MACKBMCRpsls.dll
+C:\Users\mbryc\Downloads\RPSLS\bin\Release\net9.0\publish\MACKBMCRpsls.deps.json
+C:\Users\mbryc\Downloads\RPSLS\bin\Release\net9.0\publish\MACKBMCRpsls.runtimeconfig.json
+C:\Users\mbryc\Downloads\RPSLS\bin\Release\net9.0\publish\MACKBMCRpsls.pdb
+C:\Users\mbryc\Downloads\RPSLS\bin\Release\net9.0\publish\Microsoft.OpenApi.dll
+C:\Users\mbryc\Downloads\RPSLS\bin\Release\net9.0\publish\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\mbryc\Downloads\RPSLS\bin\Release\net9.0\publish\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\mbryc\Downloads\RPSLS\bin\Release\net9.0\publish\Swashbuckle.AspNetCore.SwaggerUI.dll

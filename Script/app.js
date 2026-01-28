@@ -1,101 +1,237 @@
-const playBtn = document.getElementById("playBtn");
-const rockBtn = document.getElementById("rockBtn");
-const paperBtn = document.getElementById("paperBtn");
-const sissorsBtn = document.getElementById("sissorsBtn");
-const spockBtn = document.getElementById("spockBtn");
-const lizardBtn = document.getElementById("lizardBtn");
-const pvpBtn = document.getElementById("pvpBtn");
-const playAgain = document.getElementById("playAgain");
-const howtoplay = document.getElementById("howtoplay")
-const homeBtn = document.getElementById("homeBtn");
-const gameResult = document.getElementById("gameResult");
-const bo1 = document.getElementById("bo1");
-const bo5 = document.getElementById("bo5");
-const bo7 = document.getElementById("bo7");
-const img1 = document.getElementById("img1");
-const img2 = document.getElementById("img2");
-const rules = document.getElementById("rules");
-const closeRules = document.getElementById("closeRules");
-const gameOptions = document.getElementById("gameOptions");
-
-let playeranswer = "rock";
-let cpuanswer = "paper";
-
-howtoplay ? .addEventListener("click", () => {
-    playBtn.classList.add("hidden");
-    pvpBtn.classList.add("hidden");
-    howtoplay.classList.add("hidden");
-
-    rules.classList.remove("hidden");
-});
-closeRules ? .addEventListener("click", () => {
-    rules.classList.add("hidden");
-
-    playBtn.classList.remove("hidden");
-    pvpBtn.classList.remove("hidden");
-    howtoplay.classList.remove("hidden");
-});
-
-function showOptions() {
-    playBtn ? .classList.add("hidden");
-    pvpBtn ? .classList.add("hidden");
-    howtoplay ? .classList.add("hidden");
-    gameOptions ? .classList.remove("hidden");
-}
-
 document.addEventListener("DOMContentLoaded", () => {
-    if (localStorage.getItem("mode") !== "pvp") return;
+    // Query all DOM elements first
+    const rockBtn = document.getElementById("rockBtn");
+    const paperBtn = document.getElementById("paperBtn");
+    const sissorsBtn = document.getElementById("sissorsBtn");
+    const spockBtn = document.getElementById("spockBtn");
+    const lizardBtn = document.getElementById("lizardBtn");
+    const playAgain = document.getElementById("playAgain");
+    const homeBtn = document.getElementById("homeBtn");
+    const gameResult = document.getElementById("gameResult");
+    const img1 = document.getElementById("img1");
+    const img2 = document.getElementById("img2");
+    const playGameBtn = document.getElementById("playBtn");
+    const howToPlayBtn = document.getElementById("howtoplay");
+    const rulesModal = document.getElementById("rules");
+    const closeRulesBtn = document.getElementById("closeRules");
+    let playeranswer = "rock";
+    let cpuanswer = "paper";
+    let gameMode = "cpu"; // "cpu" or "pvp"
 
-    const turnText = document.getElementById("turnText");
-    if (!turnText) return;
-
-    if (localStorage.getItem("turn") === "2") {
-        turnText.textContent = "P -2";
-    } else {
-        turnText.textContent = "P -1";
+    // Play Again button handler (must be after DOM queries)
+    if (playAgain) {
+        playAgain.addEventListener("click", () => {
+            if (isMatchOver()) {
+                localStorage.removeItem("p1Wins");
+                localStorage.removeItem("p2Wins");
+                localStorage.removeItem("bestOf");
+                window.location.href = "/index.html";
+            } else {
+                window.location.href = "/Pages/Selection.html";
+            }
+        });
     }
+
+    // -------- CPU FETCH --------
+    async function getCpuAnswer() {
+        const response = await fetch(
+            "http://localhost:5000/api/rpsls"
+        );
+        cpuanswer = (await response.text()).trim();
+    }
+
+    // -------- DETECT WHICH PAGE WE'RE ON --------
+    const isSelectionPage = !!(rockBtn && paperBtn && sissorsBtn && spockBtn && lizardBtn);
+    const isGamePage = !!(gameResult && img1 && img2);
+
+    // -------- SELECTION PAGE LOGIC --------
+    if (isSelectionPage) {
+        const currentGameMode = localStorage.getItem("gameMode") || "cpu";
+        const playerNum = currentGameMode === "pvp" && localStorage.getItem("playeranswer") !== null ? "2" : "1";
+
+        if (rockBtn) {
+            rockBtn.addEventListener("click", () => {
+                const answerKey = playerNum === "1" ? "playeranswer" : "player2answer";
+                localStorage.setItem(answerKey, "rock");
+                localStorage.getItem(answerKey); // force sync
+                if (currentGameMode === "pvp" && playerNum === "1") {
+                    window.location.href = "/Pages/Selection2.html";
+                } else {
+                    window.location.href = "/Pages/Game.html";
+                }
+            });
+        }
+        if (paperBtn) {
+            paperBtn.addEventListener("click", () => {
+                const answerKey = playerNum === "1" ? "playeranswer" : "player2answer";
+                localStorage.setItem(answerKey, "paper");
+                localStorage.getItem(answerKey);
+                if (currentGameMode === "pvp" && playerNum === "1") {
+                    window.location.href = "/Pages/Selection2.html";
+                } else {
+                    window.location.href = "/Pages/Game.html";
+                }
+            });
+        }
+        if (sissorsBtn) {
+            sissorsBtn.addEventListener("click", () => {
+                const answerKey = playerNum === "1" ? "playeranswer" : "player2answer";
+                localStorage.setItem(answerKey, "scissors");
+                localStorage.getItem(answerKey);
+                if (currentGameMode === "pvp" && playerNum === "1") {
+                    window.location.href = "/Pages/Selection2.html";
+                } else {
+                    window.location.href = "/Pages/Game.html";
+                }
+            });
+        }
+        if (spockBtn) {
+            spockBtn.addEventListener("click", () => {
+                const answerKey = playerNum === "1" ? "playeranswer" : "player2answer";
+                localStorage.setItem(answerKey, "spock");
+                localStorage.getItem(answerKey);
+                if (currentGameMode === "pvp" && playerNum === "1") {
+                    window.location.href = "/Pages/Selection2.html";
+                } else {
+                    window.location.href = "/Pages/Game.html";
+                }
+            });
+        }
+        if (lizardBtn) {
+            lizardBtn.addEventListener("click", () => {
+                const answerKey = playerNum === "1" ? "playeranswer" : "player2answer";
+                localStorage.setItem(answerKey, "lizard");
+                localStorage.getItem(answerKey);
+                if (currentGameMode === "pvp" && playerNum === "1") {
+                    window.location.href = "/Pages/Selection2.html";
+                } else {
+                    window.location.href = "/Pages/Game.html";
+                }
+            });
+        }
+    }
+
+    // -------- GAME PAGE LOGIC --------
+    if (isGamePage) {
+        gameMode = localStorage.getItem("gameMode") || "cpu";
+        const savedPlayer = localStorage.getItem("playeranswer") || "rock";
+        const savedPlayer2 = localStorage.getItem("player2answer");
+
+        // Update global variables
+        playeranswer = savedPlayer;
+        if (gameMode === "pvp" && savedPlayer2) {
+            cpuanswer = savedPlayer2;
+        } else if (gameMode === "cpu") {
+            // CPU mode will fetch the CPU answer
+            cpuanswer = "paper"; // temporary default
+        }
+
+        // map a choice string to the actual asset filename (lowercase)
+        const toImage = (choice) => {
+            if (!choice) return "rock.png";
+            return choice.toLowerCase() + ".png";
+        };
+
+        // ensure we have a player choice; if not, go back to selection
+        if (!savedPlayer) {
+            // nothing selected — send user back to selection
+            window.location.href = "/Pages/Selection.html";
+        } else {
+            (async() => {
+                if (gameMode === "cpu") {
+                    await getCpuAnswer();
+                    // ensure cpuanswer falls back safely
+                    cpuanswer = (cpuanswer || "paper").toLowerCase();
+                } else if (gameMode === "pvp") {
+                    cpuanswer = (savedPlayer2 || "").toLowerCase();
+                    if (!cpuanswer) {
+                        // missing player2 selection — redirect to player 2 selection
+                        window.location.href = "/Pages/Selection2.html";
+                        return;
+                    }
+                }
+
+                // normalize playeranswer
+                playeranswer = savedPlayer.toLowerCase();
+
+                img1.src = `/Assets/${toImage(playeranswer)}`;
+                img2.src = `/Assets/${toImage(cpuanswer)}`;
+                win();
+            })();
+        }
+    }
+
+    // -------- HOME PAGE BUTTONS --------
+    if (playGameBtn) {
+        playGameBtn.addEventListener("click", () => {
+            localStorage.removeItem("p1Wins");
+            localStorage.removeItem("p2Wins");
+            localStorage.removeItem("bestOf");
+            localStorage.removeItem("playeranswer");
+            localStorage.removeItem("player2answer");
+            sessionStorage.removeItem("playeranswer");
+            sessionStorage.removeItem("player2answer");
+            localStorage.setItem("gameMode", "cpu");
+            window.location.href = "/Pages/Selection.html";
+        });
+    }
+
+    const pvpBtn = document.getElementById("pvpBtn");
+    if (pvpBtn) {
+        pvpBtn.addEventListener("click", () => {
+            localStorage.removeItem("p1Wins");
+            localStorage.removeItem("p2Wins");
+            localStorage.removeItem("bestOf");
+            localStorage.removeItem("playeranswer");
+            localStorage.removeItem("player2answer");
+            sessionStorage.removeItem("playeranswer");
+            sessionStorage.removeItem("player2answer");
+            localStorage.setItem("gameMode", "pvp");
+            window.location.href = "/Pages/Selection.html";
+        });
+    }
+
+    if (howToPlayBtn) {
+        howToPlayBtn.addEventListener("click", () => {
+            if (rulesModal) {
+                rulesModal.classList.remove("hidden");
+            }
+        });
+    }
+
+    if (closeRulesBtn) {
+        closeRulesBtn.addEventListener("click", () => {
+            if (rulesModal) {
+                rulesModal.classList.add("hidden");
+            }
+        });
+    }
+
+    // Close rules modal when clicking outside
+    if (rulesModal) {
+        rulesModal.addEventListener("click", (e) => {
+            if (e.target === rulesModal) {
+                rulesModal.classList.add("hidden");
+            }
+        });
+    }
+
+    // Home button navigation
+    if (homeBtn) {
+        homeBtn.addEventListener("click", () => {
+            window.location.href = "/index.html";
+        });
+    }
+
+    // ...existing code...
 });
-
-playBtn ? .addEventListener("click", () => {
-    localStorage.setItem("mode", "cpu");
-    localStorage.setItem("turn", "1");
-    showOptions();
-});
-
-pvpBtn ? .addEventListener("click", () => {
-    localStorage.setItem("mode", "pvp");
-    localStorage.setItem("turn", "1");
-    localStorage.removeItem("player1answer");
-    localStorage.removeItem("player2answer");
-    showOptions();
-});
-
-if (homeBtn) {
-    homeBtn.addEventListener("click", () => {
-        window.location.href = "../index.html";
-    });
-}
-
-//! BEST OF START FUNCTION
-function startSeries(bestOf) {
-    localStorage.setItem("bestOf", String(bestOf));
-    localStorage.setItem("p1Wins", "0");
-    localStorage.setItem("p2Wins", "0");
-    window.location.href = "/Pages/Selection.html";
-}
-
-if (bo1) bo1.addEventListener("click", () => startSeries(1));
-if (bo5) bo5.addEventListener("click", () => startSeries(5));
-if (bo7) bo7.addEventListener("click", () => startSeries(7));
 
 //! TELLS US HOW MANY GAME WINS NEEDED
 function winsNeeded() {
-    const bestOf = localStorage.getItem("bestOf");
-
+    const bestOf = localStorage.getItem("bestOf") || "1";
     if (bestOf === "1") return 1;
     if (bestOf === "5") return 3;
     if (bestOf === "7") return 4;
-
     return 1;
 }
 
@@ -110,171 +246,7 @@ function isMatchOver() {
     return false;
 }
 
-//! FUNCTION TO INDICATE IF THE GAME IS STILL GOING
-if (playAgain) {
-    playAgain.addEventListener("click", () => {
-        if (isMatchOver()) {
-            localStorage.removeItem("p1Wins");
-            localStorage.removeItem("p2Wins");
-            localStorage.removeItem("bestOf");
-            window.location.href = "../index.html";
-        } else {
-            window.location.href = "../Pages/Selection.html";
-        }
-    });
-}
 
-// -------- CPU FETCH --------
-async function getCpuAnswer() {
-    const response = await fetch(
-        "http://localhost:5000/api/rpsls"
-    );
-    cpuanswer = (await response.text()).trim();
-}
-
-//            VARIABLE CHANGES
-if (rockBtn) {
-    rockBtn.addEventListener("click", () => {
-        const mode = localStorage.getItem("mode") || "cpu";
-        if (mode === "pvp") {
-            const turn = localStorage.getItem("turn") || "1";
-            if (turn === "1") {
-                localStorage.setItem("player1answer", "rock");
-                localStorage.setItem("turn", "2");
-                window.location.href = "../Pages/Selection.html";
-            } else {
-                localStorage.setItem("player2answer", "rock");
-                localStorage.setItem("turn", "1");
-                window.location.href = "../Pages/Game.html";
-            }
-            return;
-        }
-
-        playeranswer = "rock";
-        localStorage.setItem("playeranswer", playeranswer);
-        window.location.href = "../Pages/Game.html";
-    });
-}
-
-if (paperBtn) {
-    paperBtn.addEventListener("click", () => {
-        const mode = localStorage.getItem("mode") || "cpu";
-        if (mode === "pvp") {
-            const turn = localStorage.getItem("turn") || "1";
-            if (turn === "1") {
-                localStorage.setItem("player1answer", "paper");
-                localStorage.setItem("turn", "2");
-                window.location.href = "../Pages/Selection.html";
-            } else {
-                localStorage.setItem("player2answer", "paper");
-                localStorage.setItem("turn", "1");
-                window.location.href = "../Pages/Game.html";
-            }
-            return;
-        }
-
-        playeranswer = "paper";
-        localStorage.setItem("playeranswer", playeranswer);
-        window.location.href = "../Pages/Game.html";
-    });
-}
-
-if (sissorsBtn) {
-    sissorsBtn.addEventListener("click", () => {
-        const mode = localStorage.getItem("mode") || "cpu";
-        if (mode === "pvp") {
-            const turn = localStorage.getItem("turn") || "1";
-            if (turn === "1") {
-                localStorage.setItem("player1answer", "scissors");
-                localStorage.setItem("turn", "2");
-                window.location.href = "../Pages/Selection.html";
-            } else {
-                localStorage.setItem("player2answer", "scissors");
-                localStorage.setItem("turn", "1");
-                window.location.href = "../Pages/Game.html";
-            }
-            return;
-        }
-
-        playeranswer = "scissors";
-        localStorage.setItem("playeranswer", playeranswer);
-        window.location.href = "../Pages/Game.html";
-    });
-}
-
-if (spockBtn) {
-    spockBtn.addEventListener("click", () => {
-        const mode = localStorage.getItem("mode") || "cpu";
-        if (mode === "pvp") {
-            const turn = localStorage.getItem("turn") || "1";
-            if (turn === "1") {
-                localStorage.setItem("player1answer", "spock");
-                localStorage.setItem("turn", "2");
-                window.location.href = "../Pages/Selection.html";
-            } else {
-                localStorage.setItem("player2answer", "spock");
-                localStorage.setItem("turn", "1");
-                window.location.href = "../Pages/Game.html";
-            }
-            return;
-        }
-
-        playeranswer = "spock";
-        localStorage.setItem("playeranswer", playeranswer);
-        window.location.href = "../Pages/Game.html";
-    });
-}
-
-if (lizardBtn) {
-    lizardBtn.addEventListener("click", () => {
-        const mode = localStorage.getItem("mode") || "cpu";
-        if (mode === "pvp") {
-            const turn = localStorage.getItem("turn") || "1";
-            if (turn === "1") {
-                localStorage.setItem("player1answer", "lizard");
-                localStorage.setItem("turn", "2");
-                window.location.href = "../Pages/Selection.html";
-            } else {
-                localStorage.setItem("player2answer", "lizard");
-                localStorage.setItem("turn", "1");
-                window.location.href = "../Pages/Game.html";
-            }
-            return;
-        }
-
-        playeranswer = "lizard";
-        localStorage.setItem("playeranswer", playeranswer);
-        window.location.href = "../Pages/Game.html";
-    });
-}
-
-// -------- GAME PAGE LOAD
-const mode = localStorage.getItem("mode") || "cpu";
-
-if (mode === "pvp") {
-    const p1 = localStorage.getItem("player1answer");
-    const p2 = localStorage.getItem("player2answer");
-    if (p1) playeranswer = p1;
-    if (p2) cpuanswer = p2;
-} else {
-    const savedPlayer = localStorage.getItem("playeranswer");
-    if (savedPlayer) playeranswer = savedPlayer;
-}
-
-const toImage = (choice) => choice + ".png";
-
-if (gameResult && img1 && img2) {
-    (async() => {
-        if (mode !== "pvp") {
-            await getCpuAnswer();
-        }
-
-        img1.src = `../Assets/${toImage(playeranswer)}`;
-        img2.src = `../Assets/${toImage(cpuanswer)}`;
-
-        win();
-    })();
-}
 
 //!           CODE FOR WINNER
 function win() {
@@ -289,9 +261,11 @@ function win() {
     let p2 = Number(localStorage.getItem("p2Wins") || "0");
     const needed = winsNeeded();
 
-    // TIE → show current score
+    // TIE → show tie message
     if (playeranswer === cpuanswer) {
-        if (gameResult) gameResult.textContent = `${p1} - ${p2}`;
+        if (gameResult) gameResult.textContent = "It's a tie!";
+        const resultDetail = document.getElementById("resultDetail");
+        if (resultDetail) resultDetail.textContent = "Both chose the same. Play again!";
         return;
     }
 
@@ -304,27 +278,38 @@ function win() {
         localStorage.setItem("p2Wins", String(p2));
     }
 
-    // Match finished → show winner
-    if (p1 >= needed || p2 >= needed) {
-        if (gameResult) {
-            if (p1 > p2) {
-                gameResult.textContent = "P1 WINS";
-            } else {
-                if (localStorage.getItem("mode") === "pvp") {
-                    gameResult.textContent = "P2 WINS";
-                } else {
-                    gameResult.textContent = "CPU WINS";
-                }
-            }
+    // Show round result (winner/loser) every round
+    let roundWinner = "";
+    let roundLoser = "";
+    if (gameMode === "pvp") {
+        if (youWin) {
+            roundWinner = "PLAYER 1 WINS!";
+            roundLoser = "PLAYER 2 LOSES!";
+        } else {
+            roundWinner = "PLAYER 2 WINS!";
+            roundLoser = "PLAYER 1 LOSES!";
         }
+    } else {
+        if (youWin) {
+            roundWinner = "YOU WIN!";
+            roundLoser = "CPU LOSES!";
+        } else {
+            roundWinner = "CPU WINS!";
+            roundLoser = "YOU LOSE!";
+        }
+    }
+    if (gameResult) gameResult.textContent = roundWinner;
+    const resultDetail = document.getElementById("resultDetail");
+    if (resultDetail) resultDetail.textContent = roundLoser;
 
+    // If match is finished, update button and show final result
+    if (p1 >= needed || p2 >= needed) {
         if (playAgain) {
             playAgain.textContent = "New Match";
         }
-
-        return;
+    } else {
+        if (playAgain) {
+            playAgain.textContent = "NEXT RND";
+        }
     }
-
-    // Match continues → show score
-    if (gameResult) gameResult.textContent = `${p1} - ${p2}`;
 }
