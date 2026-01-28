@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MACKBMCRpsls")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a40a6bf36a57902ba7838f82089013f13534fe5e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+150fe0c5350083c53072c3e672f9f4fb16ced014")]
 [assembly: System.Reflection.AssemblyProductAttribute("MACKBMCRpsls")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MACKBMCRpsls")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
